@@ -45,7 +45,7 @@ def preprocess(X):
     return X
 
 def preprocess_mobilenet(X):
-    X = preprocess_mobilenet(X)
+    X = mobilenet_preprocess(X)
     return X
 
 def get_UNet():
