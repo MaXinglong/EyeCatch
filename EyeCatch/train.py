@@ -19,7 +19,7 @@ cnn_model.summary()
 
 np.random.seed(1)
 X, Y = get_data()
-print('x type: ', X.dtpye)
+print('x type: ', X.dtype)
 m = np.shape(X)[0]
 
 choice = np.random.permutation(m)
