@@ -56,7 +56,7 @@ def get_MobileNet():
 
     x = mobilenet_model.get_layer('conv_preds').output
     x = Flatten()(x)
-    predictions = Dense(2, activation=2)(x)
+    predictions = Dense(2, activation=None)(x)
     
     model = Model(input=mobilenet_model.input, output=predictions)
 
