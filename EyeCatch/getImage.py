@@ -17,8 +17,8 @@ video.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
 print('width', video.get(cv2.CAP_PROP_FRAME_WIDTH))
 print('height', video.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
-video.set(cv2.CAP_PROP_CONTRAST, 0.5)
-print('contrast', video.get(cv2.CAP_PROP_CONTRAST))
+# video.set(cv2.CAP_PROP_CONTRAST, 0.5)
+# print('contrast', video.get(cv2.CAP_PROP_CONTRAST))
 
 
 get_flag = False
@@ -26,7 +26,7 @@ get_flag = False
 labels = {}
 
 rootname = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
-os.mkdir('./data/'+rootname)
+os.mkdir('../data/'+rootname)
 
 Id = 0
 
@@ -39,7 +39,7 @@ while ret:
     if get_flag == True:
         print('saving image')
         Id = Id + 1
-        filename = './data/' + rootname + '/D' + datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + 'D' + str(Id) + '.jpg'
+        filename = '../data/' + rootname + '/D' + datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + 'D' + str(Id) + '.jpg'
         cv2.imwrite(filename, image)
         labels[filename] = [x, y]
     else:
@@ -57,6 +57,6 @@ while ret:
     ret, image = video.read()
 
 if len(labels) != 0:
-    filename = './data/' + rootname + '/labels.json'
+    filename = '../data/' + rootname + '/labels.json'
     with open(filename, 'w') as fp:
         json.dump(labels, fp)

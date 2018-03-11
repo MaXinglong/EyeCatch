@@ -14,7 +14,7 @@ for root in root_dirs:
     fns = os.listdir('./data/' + root + '/')
     fns = [x for x in fns if x.split('.')[-1] == 'jpg']
 
-    data = np.zeros((len(fns), 224, 224, 3))
+    data = np.zeros((len(fns), 224, 224, 3), dtype=np.uint8)
     for i, fn in enumerate(fns):
         filename = './data/' + root + '/' + fn
         if filename.split('.')[-1] != 'jpg':
@@ -22,7 +22,7 @@ for root in root_dirs:
         img = image.load_img(filename, target_size=(224, 224))
         # type(x) float32
         x = image.img_to_array(img)
-
+        x = x.astype(np.uint8)
         data[i, :] = x
 
         print('%.2f%%' %(i/len(fns)))
