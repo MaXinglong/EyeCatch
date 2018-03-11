@@ -31,8 +31,13 @@ print('loading done')
 while True:
     ret, img_raw = video.read()
     img = Image.fromarray(np.uint8(img_raw))
-    img = img.resize((224, 224))
+    # img = img.resize((224, 224))
     img = image.img_to_array(img)
+
+    x1 = int((1280-224)/2)
+    y1 = int((720-224)/2)
+    
+    img = img[x1:x1+224, y1:y1+224]
     img = np.expand_dims(img, axis=0)
     img = preprocess_mobilenet(img)
     print('predicting')
@@ -41,6 +46,6 @@ while True:
     print(out[0, 0], out[0, 1])
 
     cv2.imshow('hello', img_raw)
-    if cv2.waitKey(1) & 0xff == 27:
+    if cv2.waitKey(300) & 0xff == 27:
         break
 cv2.destroyAllWindows()

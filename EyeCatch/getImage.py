@@ -12,8 +12,8 @@ import pyautogui as pag
 video = cv2.VideoCapture(0)
 
 
-video.set(cv2.CAP_PROP_FRAME_WIDTH, 320)
-video.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
+video.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+video.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 print('width', video.get(cv2.CAP_PROP_FRAME_WIDTH))
 print('height', video.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
@@ -32,7 +32,14 @@ Id = 0
 
 ret, image = video.read()
 while ret:    
-    cv2.imshow('frame', image)
+
+    x1 = int((1280-224)/2)
+    y1 = int((720-224)/2)
+
+    image_copy = image.copy()
+    cv2.rectangle(image_copy, (x1, y1), (x1+224, y1+224), (0, 255, 0), 5)
+
+    cv2.imshow('frame', image_copy)
     x, y = pag.position()
     # pag.moveTo(100, 200)
 
@@ -40,7 +47,9 @@ while ret:
         print('saving image')
         Id = Id + 1
         filename = '../data/' + rootname + '/D' + datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + 'D' + str(Id) + '.jpg'
-        cv2.imwrite(filename, image)
+        
+        image_save = image[y1:y1+224, x1:x1+224]
+        cv2.imwrite(filename, image_save)
         labels[filename] = [x, y]
     else:
         print('waiting for save')
