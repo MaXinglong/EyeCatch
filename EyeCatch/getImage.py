@@ -34,7 +34,8 @@ ret, image = video.read()
 while ret:    
 
     x1 = int((1280-224)/2)
-    y1 = int((720-224)/2)
+    # y1 = int((720-224)/2)
+    y1 = int(100)
 
     image_copy = image.copy()
     cv2.rectangle(image_copy, (x1, y1), (x1+224, y1+224), (0, 255, 0), 5)

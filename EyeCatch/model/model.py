@@ -23,6 +23,8 @@ from keras.preprocessing import image
 from keras.models import Model
 from keras.layers import Dense
 from keras.layers import Flatten
+from keras.layers import Conv2D, Conv2DTranspose
+
 
 # import numpy as np
 
@@ -50,6 +52,9 @@ def preprocess_mobilenet(X):
 
 def get_UNet():
     None
+
+def get_ConvNet():
+    
     
 def get_MobileNet():
     mobilenet_model = MobileNet(weights='imagenet')
