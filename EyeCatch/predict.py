@@ -9,15 +9,17 @@ from keras.models import load_model
 from model.model import preprocess_mobilenet
 from keras.preprocessing import image
 
-from keras.applications import mobilenet
+from keras.applications.mobilenet import mobilenet
 
 
 print('loading')
 # get model
+print(dir(mobilenet))
 cnn_model = load_model('mobilenet_finetuning.h5',
                     custom_objects={
-                        'relu6': mobilenet.relu6,
-                        'DepthwiseConv2D': mobilenet.DepthwiseConv2D})
+                        'relu6': mobilenet.relu6})#,
+                        # 'DepthwiseConv2D': mobilenet.DepthwiseConv2D})
+# cnn_model = load_model('mobilenet_finetuning.h5')
 print('loading done')
 
 # set Camera
